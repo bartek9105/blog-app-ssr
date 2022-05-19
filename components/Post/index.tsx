@@ -11,8 +11,6 @@ const PostA = ({ title, img_url, created_at, categories }: PostProps) => {
     addSuffix: true,
   });
 
-  console.log(createdAt);
-
   return (
     <article className="bg-zinc-800 rounded">
       <div className="p-3 flex justify-between">
@@ -31,8 +29,8 @@ const PostA = ({ title, img_url, created_at, categories }: PostProps) => {
       <div className="relative w-1/1 h-48">
         <Image layout="fill" objectFit="cover" src={img_url} />
       </div>
-      <div className="p-3">
-        <h2 className="text-white text-sm mt-3">{title}</h2>
+      <div className="p-4">
+        <h2 className="text-white text-sm mt-3 leading-6">{title}</h2>
       </div>
     </article>
   );

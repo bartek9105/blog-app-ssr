@@ -1,28 +1,31 @@
 import type { NextPage } from "next";
-import { useQuery } from "react-query";
+import { QueryClient, useQuery } from "react-query";
 import { getCategories } from "../api/categories/categories.api";
 import { getPosts } from "../api/posts/posts.api";
 import CategoriesList from "../components/CategoriesList";
-import PostA from "../components/Post";
+import PostsList from "../components/PostsList";
 
-const Home: NextPage = () => {
+const Home: NextPage = (props: any) => {
   const { data: categories } = useQuery("someKey", getCategories);
-  const { data: posts } = useQuery("anotherKey", getPosts);
-
-  console.log(posts);
+  const { data: posts } = useQuery("anotherKey", getPosts, {
+    initialData: props.posts,
+  });
 
   return (
     <>
       <CategoriesList categories={categories} />
-      <ul>
-        {posts?.map(({ id, title, img_url, categories }) => (
-          <li key={id} className="mb-2">
-            <PostA title={title} img_url={img_url} categories={categories} />
-          </li>
-        ))}
-      </ul>
+      <PostsList posts={posts} />
     </>
   );
 };
+
+export async function getStaticProps() {
+  const posts = await getPosts();
+  return {
+    props: {
+      posts,
+    },
+  };
+}
 
 export default Home;
