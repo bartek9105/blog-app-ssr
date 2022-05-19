@@ -1,13 +1,16 @@
 import type { NextPage } from "next";
-import { useEffect } from "react";
 import { useQuery } from "react-query";
 import { getCategories } from "../api/categories/categories.api";
-import supabase from "../config/supabase.config";
+import CategoriesList from "../components/CategoriesList";
 
 const Home: NextPage = () => {
   const { data: categories } = useQuery("someKey", getCategories);
 
-  return <h1 className="text-3xl font-bold underline">Hello world!</h1>;
+  return (
+    <>
+      <CategoriesList categories={categories} />
+    </>
+  );
 };
 
 export default Home;
