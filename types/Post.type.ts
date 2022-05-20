@@ -6,4 +6,7 @@ export type Post = {
   img_url: string;
   categories: Category;
   created_at: Date;
+  upvotes_count: number;
+  comments_count: number;
+  content: string;
 };
