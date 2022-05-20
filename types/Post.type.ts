@@ -7,6 +7,6 @@ export type Post = {
   categories: Category;
   created_at: Date;
   upvotes_count: number;
-  comments_count: number;
+  comments_count?: number;
   content: string;
 };

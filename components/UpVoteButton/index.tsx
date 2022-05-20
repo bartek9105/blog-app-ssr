@@ -2,7 +2,7 @@ import Button from "../Button";
 import { ArrowUp } from "react-feather";
 
 type UpVoteButtonProps = {
-  upVotesCount: number;
+  upVotesCount?: number;
 };
 
 const UpVoteButton = ({ upVotesCount }: UpVoteButtonProps) => {

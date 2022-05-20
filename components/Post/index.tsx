@@ -7,7 +7,7 @@ import { MessageCircle, Bookmark } from "react-feather";
 import CategoryHint from "../CategoryHint";
 
 type PostProps = Post & {
-  onUpVote: (postId: number) => void;
+  onUpVote?: (postId: number) => void;
 };
 
 const PostA = ({
@@ -16,7 +16,6 @@ const PostA = ({
   img_url,
   created_at,
   categories,
-  upvotes_count,
   comments_count,
   onUpVote,
 }: PostProps) => {
@@ -39,8 +38,8 @@ const PostA = ({
       <div className="p-4 ">
         <h2 className="text-white text-sm mt-3 leading-6 mb-3">{title}</h2>
         <div className="flex items-center justify-between">
-          <div onClick={() => onUpVote(id)}>
-            <UpVoteButton upVotesCount={upvotes_count} />
+          <div onClick={() => onUpVote?.(id)}>
+            {/* <UpVoteButton upVotesCount={upvotes_count} /> */}
           </div>
           <div className="flex items-center text-gray-300 text-sm">
             <div className="flex">

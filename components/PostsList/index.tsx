@@ -4,8 +4,8 @@ import Link from "next/link";
 
 type PostsListProps = {
   posts: Post[];
-  onUpVote: (postId: number) => void;
-  upvotesCount: number;
+  onUpVote?: (postId: number) => void;
+  upvotesCount?: number;
 };
 
 const PostsList = ({ posts, onUpVote, upvotesCount }: PostsListProps) => {
@@ -27,7 +27,6 @@ const PostsList = ({ posts, onUpVote, upvotesCount }: PostsListProps) => {
                   img_url={img_url}
                   categories={categories}
                   comments_count={12}
-                  upvotes_count={upvotesCount}
                 />
               </a>
             </Link>
