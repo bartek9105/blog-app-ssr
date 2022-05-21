@@ -3,26 +3,33 @@ import { LogIn } from "react-feather";
 import Logo from "../Logo";
 import Link from "next/link";
 import supabase from "../../config/supabase.config";
+import { Plus } from "react-feather";
+import { useRouter } from "next/router";
 
 const Navbar = () => {
   const user = supabase.auth.user();
+  const router = useRouter();
 
   return (
     <nav className="flex justify-between items-center p-4 bg-zinc-800">
-      <Logo />
+      <Logo onClick={() => router.push("/")} />
       {user ? (
-        <>
+        <div className="flex items-center gap-4">
+          <span className="text-yellow-400 font-bold">
+            {user.user_metadata.name}
+          </span>
           <Link href="/post/new">
             <a>
-              <Button className="bg-yellow-400 px-2 py-1">Add New Post</Button>
+              <Button variant="primary">
+                <Plus />
+              </Button>
             </a>
           </Link>
-          <span className="text-yellow-400">{user.email}</span>
-        </>
+        </div>
       ) : (
         <Link href="/login">
           <a>
-            <Button className="bg-yellow-400 px-4 py-1 rounded flex gap-3 text-sm items-center">
+            <Button variant="primary">
               <LogIn />
               Login
             </Button>

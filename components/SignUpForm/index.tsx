@@ -7,10 +7,22 @@ type SignUpFormProps = {
   onSubmit: (values: any) => void;
 };
 
+export type SignUpFormValues = {
+  email: string;
+  name: string;
+  password: string;
+};
+
+const initialValues: SignUpFormValues = {
+  email: "",
+  name: "",
+  password: "",
+};
+
 const SignUpForm = ({ onSubmit }: SignUpFormProps) => {
   return (
     <Formik
-      initialValues={{ email: "", password: "" }}
+      initialValues={initialValues}
       validationSchema={Yup.object({
         email: Yup.string().required("Required"),
         password: Yup.string()
@@ -20,10 +32,11 @@ const SignUpForm = ({ onSubmit }: SignUpFormProps) => {
       onSubmit={(values) => onSubmit(values)}
     >
       <Form>
-        <Field name="email" type="text" as={Input} label="First name" />
+        <Field name="email" type="text" as={Input} label="E-mail" />
+        <Field name="name" type="text" as={Input} label="Name" />
         <Field name="password" type="password" as={Input} label="Password" />
-        <Button type="submit" className="bg-yellow-400">
-          Create account
+        <Button type="submit" variant="primary" className="py-3 mt-4 w-100">
+          Create an account
         </Button>
       </Form>
     </Formik>

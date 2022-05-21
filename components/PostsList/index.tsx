@@ -12,7 +12,7 @@ const PostsList = ({ posts, onUpVote, upvotesCount }: PostsListProps) => {
   const title = "Post List";
   return (
     <>
-      <h6 className="text-gray-400 text-md mb-6 tracking-widest">
+      <h6 className="text-gray-400 text-md mb-6 tracking-wider">
         {title.toUpperCase()}
       </h6>
       <ul>

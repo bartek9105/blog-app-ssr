@@ -1,25 +1,38 @@
+import Link from "next/link";
 import { useRouter } from "next/router";
-import LoginForm from "../../components/LoginForm";
-import supabase from "../../config/supabase.config";
+import { signInWithEmail } from "../../api/auth/auth.api";
+import AuthLayout from "../../components/AuthLayout";
+import LoginForm, { LoginFormValues } from "../../components/LoginForm";
+import { routes } from "../../config/routes.config";
+
+const title = "Login";
+const hint = "Welcome back. Login to your account.";
 
 const LoginPage = () => {
   const router = useRouter();
 
-  const signInWithEmail = async ({ email, password }: any) => {
-    const { user, error } = await supabase.auth.signIn({
-      email,
-      password,
-    });
-    router.push("/");
+  const signIn = async (values: LoginFormValues) => {
+    signInWithEmail(values);
+    router.push(routes.root());
   };
+
   return (
-    <div className="text-white px-4 py-6">
-      <h3 className="tracking-widest text-xl mb-4 font-bold">Login</h3>
-      <span className="block text-sm text-gray-300 mb-12">
-        Welcome back. Login to your account.
+    <AuthLayout
+      title={title}
+      hint={hint}
+      renderForm={() => (
+        <LoginForm onSubmit={(values: LoginFormValues) => signIn(values)} />
+      )}
+    >
+      <span className="block text-sm text-gray-400 mb-12 flex justify-between mt-12">
+        Dont have an account?
+        <span className="text-yellow-400">
+          <Link href={routes.signup()}>
+            <a>Sign Up</a>
+          </Link>
+        </span>
       </span>
-      <LoginForm onSubmit={(values: any) => signInWithEmail(values)} />
-    </div>
+    </AuthLayout>
   );
 };
 

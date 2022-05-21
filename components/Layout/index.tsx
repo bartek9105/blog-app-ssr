@@ -5,10 +5,10 @@ type LayoutProps = PropsWithChildren<{}>;
 
 const Layout = ({ children }: LayoutProps) => {
   return (
-    <>
+    <div className="bg-zinc-900">
       <Navbar />
-      <div className="bg-zinc-900">{children}</div>
-    </>
+      <div>{children}</div>
+    </div>
   );
 };
 

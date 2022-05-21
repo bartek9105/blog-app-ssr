@@ -13,7 +13,7 @@ const CategoriesList = ({ categories }: CategoriesListProps) => {
       <h6 className="text-gray-400 text-xs mb-3 tracking-wider">
         {title.toUpperCase()}
       </h6>
-      <ul className="flex overflow-x-hidden overflow-y-scroll">
+      <ul className="flex overflow-y-hidden">
         {categories?.map(({ id, name, img_url }) => (
           <li className="mr-4 last-of-type:mr-0" key={id}>
             <Link href={`category/${id}`}>

@@ -19,7 +19,7 @@ const CategoryBadge = ({ name, img_url }: CategoryBadgeProps) => {
           className="rounded"
         />
       </div>
-      <span className="z-10 px-2 py-1 rounded-lg">{badgeName}</span>
+      <span className="font-bold z-10 px-2 py-1 rounded-lg">{badgeName}</span>
     </div>
   );
 };

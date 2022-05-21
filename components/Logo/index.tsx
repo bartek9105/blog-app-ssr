@@ -1,9 +1,16 @@
 import { Feather } from "react-feather";
 
-const Logo = () => {
+type LogoProps = {
+  onClick?: () => void;
+};
+
+const Logo = ({ onClick }: LogoProps) => {
   return (
-    <div className="text-yellow-400 tracking-widest flex items-center gap-3">
-      <Feather />
+    <div
+      className="text-white tracking-widest flex items-center gap-3 cursor-pointer"
+      onClick={onClick}
+    >
+      <Feather className="text-yellow-400" />
       Feather
     </div>
   );
