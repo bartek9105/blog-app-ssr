@@ -3,11 +3,11 @@ import * as Yup from "yup";
 import Button from "../Button";
 import Input from "../Input";
 
-type LoginFormProps = {
+type SignUpFormProps = {
   onSubmit: (values: any) => void;
 };
 
-const LoginForm = ({ onSubmit }: LoginFormProps) => {
+const SignUpForm = ({ onSubmit }: SignUpFormProps) => {
   return (
     <Formik
       initialValues={{ email: "", password: "" }}
@@ -23,11 +23,11 @@ const LoginForm = ({ onSubmit }: LoginFormProps) => {
         <Field name="email" type="text" as={Input} label="First name" />
         <Field name="password" type="password" as={Input} label="Password" />
         <Button type="submit" className="bg-yellow-400">
-          Login
+          Create account
         </Button>
       </Form>
     </Formik>
   );
 };
 
-export default LoginForm;
+export default SignUpForm;
