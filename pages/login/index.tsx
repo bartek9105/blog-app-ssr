@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { toast } from "react-toastify";
 import { signInWithEmail } from "../../api/auth/auth.api";
 import AuthLayout from "../../components/AuthLayout";
 import LoginForm, { LoginFormValues } from "../../components/LoginForm";
@@ -13,6 +14,7 @@ const LoginPage = () => {
 
   const signIn = async (values: LoginFormValues) => {
     signInWithEmail(values);
+    toast.success("Successfuly logged in");
     router.push(routes.root());
   };
 

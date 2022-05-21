@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { toast } from "react-toastify";
 import { signUpWithEmail } from "../../api/auth/auth.api";
 import AuthLayout from "../../components/AuthLayout";
 import SignUpForm, { SignUpFormValues } from "../../components/SignUpForm";
@@ -13,6 +14,7 @@ const SignUpPage = () => {
 
   const signUp = async (values: SignUpFormValues) => {
     signUpWithEmail(values);
+    toast.success("Successfuly signed up");
     router.push(routes.login());
   };
 
