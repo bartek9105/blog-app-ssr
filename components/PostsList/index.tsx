@@ -18,7 +18,7 @@ const PostsList = ({ posts, onUpVote, upvotesCount }: PostsListProps) => {
       <ul>
         {posts?.map(({ id, title, img_url, categories, upvotes_count }) => (
           <li key={id} className="mb-6">
-            <Link href={`post/${id}`}>
+            <Link href={`/post/${id}`}>
               <a>
                 <PostA
                   id={id}

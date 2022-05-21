@@ -9,7 +9,6 @@ const CategoryBadge = ({ name, img_url }: CategoryBadgeProps) => {
 
   return (
     <div className="relative text-sm flex justify-center align-center w-32 py-2 bg-neutral-900 text-white rounded-lg cursor-pointer">
-      {" "}
       <div className="absolute top-0 left-0 right-0 bottom-0 opacity-50">
         <Image
           src={img_url}
