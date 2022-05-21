@@ -36,3 +36,7 @@ export const getPostsByCategory = async (categoryId: number) => {
 
   return posts;
 };
+
+export const addNewPost = async (post: Post) => {
+  const { data, error } = await supabase.from("posts").insert([post]);
+};

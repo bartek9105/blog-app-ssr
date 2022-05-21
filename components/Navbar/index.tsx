@@ -11,7 +11,14 @@ const Navbar = () => {
     <nav className="flex justify-between items-center p-4 bg-zinc-800">
       <Logo />
       {user ? (
-        <span className="text-yellow-400">{user.email}</span>
+        <>
+          <Link href="/post/new">
+            <a>
+              <Button className="bg-yellow-400 px-2 py-1">Add New Post</Button>
+            </a>
+          </Link>
+          <span className="text-yellow-400">{user.email}</span>
+        </>
       ) : (
         <Link href="/login">
           <a>
