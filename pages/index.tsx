@@ -1,19 +1,23 @@
 import type { NextPage } from "next";
 import { useState } from "react";
 import { useQuery } from "react-query";
-import { getCategories } from "../api/categories/categories.api";
 import { getPosts, upVotePost } from "../api/posts/posts.api";
 import CategoriesList from "../components/CategoriesList";
 import PostsList from "../components/PostsList";
+import Spinner from "../components/Spinner";
+import { useGetCategories } from "../hooks/useGetCategories";
 
-const categoriesQueryKey = "categoriesQueryKey";
 const postsQueryKey = "postsQueryKey";
 
 const Home: NextPage = (props: any) => {
-  const { data: categories } = useQuery(categoriesQueryKey, getCategories);
-  const { data: posts } = useQuery(postsQueryKey, getPosts, {
-    initialData: props.posts,
-  });
+  const { categories, isCategoriesLoading } = useGetCategories();
+  const { data: posts, isLoading: isPostsLoading } = useQuery(
+    postsQueryKey,
+    getPosts,
+    {
+      initialData: props.posts,
+    }
+  );
   const [upvotesCount, setUpvotesCount] = useState(posts.upvotes_count);
 
   const handleUpvotesCountIncrement = (postId: number | undefined) => {
@@ -24,17 +28,25 @@ const Home: NextPage = (props: any) => {
   };
 
   return (
-    <div className="px-4">
-      <div className="py-6 lg:max-w-7xl mx-auto">
-        <CategoriesList categories={categories} />
+    <div className="px-4 py-6">
+      <div className="mb-6 lg:max-w-7xl mx-auto">
+        {isCategoriesLoading ? (
+          <Spinner />
+        ) : (
+          <CategoriesList categories={categories} />
+        )}
       </div>
       <div className="lg:grid lg:grid-cols-2 lg:gap-4 lg:max-w-7xl mx-auto">
         <div>
-          <PostsList
-            posts={posts}
-            upvotesCount={upvotesCount}
-            onUpVote={handleUpvotesCountIncrement}
-          />
+          {isPostsLoading ? (
+            <Spinner />
+          ) : (
+            <PostsList
+              posts={posts}
+              upvotesCount={upvotesCount}
+              onUpVote={handleUpvotesCountIncrement}
+            />
+          )}
         </div>
       </div>
     </div>

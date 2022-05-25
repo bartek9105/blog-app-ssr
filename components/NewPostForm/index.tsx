@@ -4,30 +4,58 @@ import Button from "../Button";
 import Input from "../Input";
 import Select from "react-select";
 import { Category } from "../../types/Category.type";
+import Textarea from "../Textarea/Textarea";
+import { isEmpty } from "lodash";
+import TextEditor from "../TextEditor";
 
 type NewPostFormProps = {
   onSubmit: (values: any) => void;
   categories: Category[];
 };
 
-const NewPostForm = ({ onSubmit, categories }: NewPostFormProps) => {
+const NewPostForm = ({ onSubmit }: NewPostFormProps) => {
   return (
     <Formik
-      initialValues={{ title: "", content: "" }}
+      initialValues={{ title: "", content: "", img_url: "" }}
       validationSchema={Yup.object({
-        title: Yup.string().required("Required"),
-        content: Yup.string().required("Required"),
+        title: Yup.string().required("Title is required"),
+        content: Yup.string().required("Content is required"),
       })}
-      onSubmit={(values, error) => onSubmit(values)}
+      onSubmit={(values) => onSubmit(values)}
     >
-      <Form>
-        <Field name="title" type="text" as={Input} label="Title" />
-        <Field name="content" type="text" as={Input} label="Content" />
-        <Field name="img_url" type="text" as={Input} label="Image URL" />
-        <Button type="submit" className="bg-yellow-400">
-          Add post
-        </Button>
-      </Form>
+      {({ errors }) => (
+        <Form>
+          <Field
+            name="title"
+            type="text"
+            as={Input}
+            label="Title"
+            error={errors.title}
+          />
+          <Field
+            name="content"
+            type="text"
+            label="Content"
+            error={errors.content}
+          >
+            {({ field }: any) => (
+              <TextEditor
+                value={field.value}
+                onChange={field.onChange(field.name)}
+              />
+            )}
+          </Field>
+          <Field name="img_url" type="text" as={Input} label="Image URL" />
+          <Button
+            disabled={!isEmpty(errors)}
+            type="submit"
+            className="bg-yellow-400"
+            variant="primary"
+          >
+            Add post
+          </Button>
+        </Form>
+      )}
     </Formik>
   );
 };

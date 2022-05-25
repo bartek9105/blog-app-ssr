@@ -12,27 +12,40 @@ const PostsList = ({ posts, onUpVote, upvotesCount }: PostsListProps) => {
   const title = "Post List";
   return (
     <>
-      <h6 className="text-gray-400 text-md mb-6 tracking-wider">
+      <h6 className="text-gray-400 text-xs mb-6 tracking-wider font-bold">
         {title.toUpperCase()}
       </h6>
       <ul>
-        {posts?.map(({ id, title, img_url, categories, upvotes_count }) => (
-          <li key={id} className="mb-6">
-            <Link href={`/post/${id}`}>
-              <a>
-                <PostA
-                  id={id}
-                  onUpVote={onUpVote}
-                  title={title}
-                  img_url={img_url}
-                  categories={categories}
-                  comments_count={12}
-                />
-              </a>
-            </Link>
-          </li>
-        ))}
+        {posts?.map(
+          ({
+            id,
+            title,
+            img_url,
+            categories,
+            upvotes_count,
+            created_at,
+            comments,
+          }) => (
+            <li key={id} className="mb-6">
+              <PostA
+                href={`/post/${id}`}
+                id={id}
+                onUpVote={onUpVote}
+                title={title}
+                img_url={img_url}
+                categories={categories}
+                comments_count={comments.length}
+                created_at={created_at}
+              />
+            </li>
+          )
+        )}
       </ul>
+      {posts.length === 0 ? (
+        <p className="text-lg text-gray-500 text-center mt-12">
+          No posts found for this category
+        </p>
+      ) : null}
     </>
   );
 };

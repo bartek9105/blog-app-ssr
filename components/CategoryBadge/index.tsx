@@ -15,7 +15,7 @@ const CategoryBadge = ({ name, img_url }: CategoryBadgeProps) => {
           alt={name}
           layout="responsive"
           width={128}
-          height={64}
+          height={48}
           className="rounded"
         />
       </div>

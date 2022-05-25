@@ -5,7 +5,7 @@ type LayoutProps = PropsWithChildren<{}>;
 
 const Layout = ({ children }: LayoutProps) => {
   return (
-    <div className="bg-zinc-900">
+    <div className="bg-zinc-900 min-h-screen">
       <Navbar />
       <div>{children}</div>
     </div>

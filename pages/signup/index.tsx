@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { useMutation } from "react-query";
 import { toast } from "react-toastify";
 import { signUpWithEmail } from "../../api/auth/auth.api";
 import AuthLayout from "../../components/AuthLayout";
@@ -7,19 +8,26 @@ import SignUpForm, { SignUpFormValues } from "../../components/SignUpForm";
 import { routes } from "../../config/routes.config";
 
 const title = "Sign Up";
-const hint = "REgister your account";
+const hint = "Register your account";
 
 const SignUpPage = () => {
   const router = useRouter();
 
-  const signUp = async (values: SignUpFormValues) => {
-    signUpWithEmail(values);
-    toast.success("Successfuly signed up");
-    router.push(routes.login());
-  };
+  const { mutateAsync: signUp, isLoading } = useMutation(
+    "signInMutationKey",
+    (data: SignUpFormValues) => signUpWithEmail(data),
+    {
+      onSuccess: () => {
+        toast.success("Successfuly signed up");
+        router.push(routes.login());
+      },
+      onError: (error: any) => toast.error(`${error}`),
+    }
+  );
 
   return (
     <AuthLayout
+      isLoading={isLoading}
       title={title}
       hint={hint}
       renderForm={() => (

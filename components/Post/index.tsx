@@ -5,13 +5,17 @@ import { formatDistanceToNow } from "date-fns";
 import UpVoteButton from "../UpVoteButton";
 import { MessageCircle, Bookmark } from "react-feather";
 import CategoryHint from "../CategoryHint";
+import Link from "next/link";
+import { routes } from "../../config/routes.config";
 
 type PostProps = Post & {
   onUpVote?: (postId: number) => void;
+  href: string;
 };
 
 const PostA = ({
   id,
+  href,
   title,
   img_url,
   created_at,
@@ -20,26 +24,42 @@ const PostA = ({
   onUpVote,
 }: PostProps) => {
   const categoryName = capitalize(categories.name);
-  const createdAt = formatDistanceToNow(new Date("2022-05-19"), {
+
+  const createdAt = formatDistanceToNow(new Date(created_at.split("T")[0]), {
     addSuffix: true,
   });
 
   return (
     <article className="bg-zinc-800 rounded">
-      <div className="p-3 flex justify-between">
-        <CategoryHint
-          imgUrl={categories.img_url}
-          categoryName={categories.name}
-        />
+      <div className="p-3 flex justify-between items-center">
+        <Link href={routes.category(categories.id)}>
+          <a>
+            <CategoryHint
+              imgUrl={categories.img_url}
+              categoryName={categories.name}
+            />
+          </a>
+        </Link>
+        <span className="text-gray-400 text-xs">{createdAt}</span>
       </div>
-      <div className="relative w-1/1 h-48">
-        <Image layout="fill" objectFit="cover" src={img_url} />
-      </div>
-      <div className="p-4 ">
-        <h2 className="text-white text-sm mt-3 leading-6 mb-3">{title}</h2>
+      <Link href={href}>
+        <a>
+          <div className="relative w-1/1 h-48">
+            <Image layout="fill" objectFit="cover" src={img_url} />
+          </div>
+        </a>
+      </Link>
+      <div className="p-4">
+        <Link href={href}>
+          <a>
+            <h2 className="text-white text-sm mt-3 leading-6 mb-4 font-bold">
+              {title}
+            </h2>
+          </a>
+        </Link>
         <div className="flex items-center justify-between">
           <div onClick={() => onUpVote?.(id)}>
-            {/* <UpVoteButton upVotesCount={upvotes_count} /> */}
+            <UpVoteButton upVotesCount={16} />
           </div>
           <div className="flex items-center text-gray-300 text-sm">
             <div className="flex">

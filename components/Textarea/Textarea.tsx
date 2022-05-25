@@ -1,17 +1,17 @@
-import { InputHTMLAttributes } from "react";
+import { TextareaHTMLAttributes } from "react";
 
-type InputProps = InputHTMLAttributes<HTMLInputElement> & {
+export type TextareaProps = TextareaHTMLAttributes<HTMLTextAreaElement> & {
   label: string;
   error?: string;
 };
 
-const Input = ({ label, error, ...restProps }: InputProps) => {
+const Textarea = ({ label, error, ...restProps }: TextareaProps) => {
   return (
     <div className="flex flex-col">
       <label className="text-yellow-400 text-xs font-bold mb-4 text-widest">
         {label}
       </label>
-      <input
+      <textarea
         className="border-2 border-gray-600 bg-zinc-900 p-3 rounded-lg mb-4 outline-none text-xs text-white"
         {...restProps}
       />
@@ -20,4 +20,4 @@ const Input = ({ label, error, ...restProps }: InputProps) => {
   );
 };
 
-export default Input;
+export default Textarea;
