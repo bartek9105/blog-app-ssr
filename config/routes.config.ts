@@ -4,6 +4,7 @@ export const routes = {
   signup: () => "/signup",
   post: {
     new: () => "/post/new",
+    details: (id: number) => `/post/${id}`,
   },
   category: (id: number) => `/category/${id}`,
   search: () => "/search",

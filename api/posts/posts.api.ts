@@ -40,3 +40,11 @@ export const getPostsByCategory = async (categoryId: number | undefined) => {
 export const addNewPost = async (post: Post) => {
   const { data, error } = await supabase.from("posts").insert([post]);
 };
+
+export const searchPosts = async (query: string) => {
+  const { data, error } = await supabase
+    .from("posts")
+    .select("*, categories (*)")
+    .textSearch("content", `${query}`);
+  return data;
+};
