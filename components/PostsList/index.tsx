@@ -1,6 +1,5 @@
 import { Post } from "../../types/Post.type";
 import PostA from "../Post";
-import Link from "next/link";
 
 type PostsListProps = {
   posts: Post[];
@@ -12,9 +11,17 @@ const PostsList = ({ posts, onUpVote, upvotesCount }: PostsListProps) => {
   const title = "Post List";
   return (
     <>
-      <h6 className="text-gray-400 text-xs mb-6 tracking-wider font-bold">
-        {title.toUpperCase()}
-      </h6>
+      <div>
+        <div className="flex items-center justify-between mb-6">
+          <h6 className="text-gray-400 text-xs tracking-wider font-bold">
+            {title.toUpperCase()}
+          </h6>
+          <ul className="flex items-center text-gray-500 text-xs font-bold gap-2">
+            <li>News</li>
+            <li>Trends</li>
+          </ul>
+        </div>
+      </div>
       <ul>
         {posts?.map(
           ({

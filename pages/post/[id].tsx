@@ -10,7 +10,6 @@ import NewCommentForm from "../../components/NewCommentForm";
 import { addComment } from "../../api/comments/comments.api";
 import supabase from "../../config/supabase.config";
 import { Bookmark, MessageCircle } from "react-feather";
-import { formatDistanceToNow } from "date-fns";
 
 const PostDetailsPage = () => {
   const {

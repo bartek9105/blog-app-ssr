@@ -6,4 +6,6 @@ export const routes = {
     new: () => "/post/new",
   },
   category: (id: number) => `/category/${id}`,
+  search: () => "/search",
+  saved: () => "saved",
 };
