@@ -41,10 +41,19 @@ export const addNewPost = async (post: Post) => {
   const { data, error } = await supabase.from("posts").insert([post]);
 };
 
-export const searchPosts = async (query: string) => {
+type SearchPostsConfig = {
+  query: string;
+};
+
+export const searchPosts = async ({ query }: SearchPostsConfig) => {
   const { data, error } = await supabase
     .from("posts")
     .select("*, categories (*)")
     .textSearch("content", `${query}`);
+  return data;
+};
+
+export const getSavedPosts = async () => {
+  const { data, error } = await supabase.from("saved").select("*");
   return data;
 };
