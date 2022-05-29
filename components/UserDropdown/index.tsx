@@ -6,7 +6,7 @@ type UserDropdownProps = {
 
 const UserDropdown = ({ onLogout }: UserDropdownProps) => {
   return (
-    <ul className="text-white bg-zinc-700 px-4 py-2 rounded">
+    <ul className="text-white bg-zinc-700 px-6 py-4 rounded">
       <li className="cursor-pointer flex items-center gap-2" onClick={onLogout}>
         <LogOut size={16} />
         Logout

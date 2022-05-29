@@ -29,7 +29,7 @@ const Search = () => {
       <Head>
         <title>Search posts</title>
       </Head>
-      <Layout>
+      <Layout className="lg:max-w-4xl mx-auto">
         <SearchPostsForm
           onSubmit={(values) => {
             handleSearchPosts(values);

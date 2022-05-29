@@ -31,7 +31,7 @@ const CategoryPage = () => {
       <Head>
         <title>{currentCategory?.name}</title>
       </Head>
-      <Layout>
+      <Layout className="lg:max-w-5xl mx-auto">
         <div className="relative w-1/1 h-24 flex items-center justify-center">
           {currentCategory && !isCategoriesLoading ? (
             <>
@@ -50,7 +50,7 @@ const CategoryPage = () => {
             <Spinner />
           )}
         </div>
-        <div className="pb-4 lg:grid lg:grid-cols-2 lg:gap-4 lg:max-w-7xl mx-auto">
+        <div className="pb-4">
           {isPostsLoading ? (
             <Spinner />
           ) : (

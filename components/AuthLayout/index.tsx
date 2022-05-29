@@ -17,7 +17,7 @@ const AuthLayout = ({
   isLoading,
 }: AuthLayoutProps) => {
   return (
-    <Layout displayPostNavigation={false}>
+    <Layout displayPostNavigation={false} className="lg:max-w-xl mx-auto">
       <h3 className="tracking-wider text-3xl mb-4 font-bold">{title}</h3>
       <span className="block text-sm text-gray-400 mb-12">{hint}</span>
       {isLoading ? (

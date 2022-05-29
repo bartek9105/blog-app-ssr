@@ -37,7 +37,7 @@ const NewPostPage = () => {
       <Head>
         <title>New post</title>
       </Head>
-      <Layout>
+      <Layout className="lg:max-w-5xl mx-auto">
         <h3 className="tracking-wider mb-8 font-bold">Create New Post</h3>
         {categories && (
           <NewPostForm
