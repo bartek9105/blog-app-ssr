@@ -32,7 +32,7 @@ const PostA = ({
   return (
     <article className="bg-zinc-800 rounded">
       <div className="p-3 flex justify-between items-center">
-        <Link href={routes.category(categories.id)}>
+        <Link href={routes.category(categories.id)} passHref>
           <a>
             <CategoryHint
               imgUrl={categories.img_url}
@@ -42,7 +42,7 @@ const PostA = ({
         </Link>
         <span className="text-gray-400 text-xs">{createdAt}</span>
       </div>
-      <Link href={href}>
+      <Link href={href} passHref>
         <a>
           <div className="relative w-1/1 h-48">
             <Image layout="fill" objectFit="cover" src={img_url} />
@@ -50,7 +50,7 @@ const PostA = ({
         </a>
       </Link>
       <div className="p-4">
-        <Link href={href}>
+        <Link href={href} passHref>
           <a>
             <h2 className="text-white text-sm mt-3 leading-6 mb-4 font-bold">
               {title}

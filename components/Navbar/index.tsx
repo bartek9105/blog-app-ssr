@@ -37,7 +37,7 @@ const Navbar = () => {
               </div>
             ) : null}
           </span>
-          <Link href={routes.post.new()}>
+          <Link href={routes.post.new()} passHref>
             <a>
               <Button variant="primary">
                 <Edit size={16} />
@@ -46,7 +46,7 @@ const Navbar = () => {
           </Link>
         </div>
       ) : (
-        <Link href={routes.login()}>
+        <Link href={routes.login()} passHref>
           <a>
             <Button variant="primary">
               <LogIn />

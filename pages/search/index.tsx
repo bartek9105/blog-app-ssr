@@ -47,7 +47,11 @@ const Search = () => {
             {posts ? (
               <ul className="grid gap-6 mt-8">
                 {posts?.map((post) => (
-                  <Link href={routes.post.details(post.id)} key={post.id}>
+                  <Link
+                    href={routes.post.details(post.id)}
+                    key={post.id}
+                    passHref
+                  >
                     <a>
                       <li key={post.id}>
                         <PostSearchResult post={post} />

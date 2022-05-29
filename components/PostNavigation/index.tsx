@@ -15,7 +15,7 @@ const PostNavigation = ({ onGoBack }: PostNavigationProps) => {
 
   return (
     <div className="bg-zinc-700 p-3 flex justify-between items-center">
-      <Link href={routes.root()}>
+      <Link href={routes.root()} passHref>
         <a className="text-gray-400 text-sm flex items-center">
           <ArrowLeft className="mr-3" />
           <span>Back</span>
