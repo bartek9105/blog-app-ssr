@@ -6,7 +6,8 @@ export const getPosts = async () => {
     .from("posts")
     .select(
       "id, title, created_at, img_url, categories ( id, name, img_url ), comments (*)"
-    );
+    )
+    .order("created_at", { ascending: false });
   return posts;
 };
 

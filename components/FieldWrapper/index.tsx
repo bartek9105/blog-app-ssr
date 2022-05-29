@@ -1,7 +1,7 @@
 import { PropsWithChildren } from "react";
 
 type FieldWrapperProps = PropsWithChildren<{
-  label: string;
+  label?: string;
   error?: string;
 }>;
 

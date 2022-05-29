@@ -2,6 +2,7 @@ import { Field, Form, Formik } from "formik";
 import { isEmpty } from "lodash";
 import * as Yup from "yup";
 import Button from "../Button";
+import FieldWrapper from "../FieldWrapper";
 import Input from "../Input";
 
 type LoginFormProps = {
@@ -34,20 +35,12 @@ const LoginForm = ({ onSubmit }: LoginFormProps) => {
     >
       {({ errors }) => (
         <Form>
-          <Field
-            name="email"
-            type="text"
-            as={Input}
-            label="E-mail"
-            error={errors.email}
-          />
-          <Field
-            name="password"
-            type="password"
-            as={Input}
-            label="Password"
-            error={errors.password}
-          />
+          <FieldWrapper label="E-mail" error={errors.email}>
+            <Field name="email" type="text" as={Input} />
+          </FieldWrapper>
+          <FieldWrapper label="Password" error={errors.password}>
+            <Field name="password" type="password" as={Input} />
+          </FieldWrapper>
           <Button
             disabled={!isEmpty(errors)}
             type="submit"

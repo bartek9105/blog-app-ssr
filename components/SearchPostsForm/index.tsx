@@ -2,6 +2,7 @@ import { Field, Form, Formik } from "formik";
 import { isEmpty } from "lodash";
 import * as Yup from "yup";
 import Button from "../Button";
+import FieldWrapper from "../FieldWrapper";
 import Input from "../Input";
 
 type SearchPostsFormProps = {
@@ -27,13 +28,14 @@ const SearchPostsForm = ({ onSubmit }: SearchPostsFormProps) => {
     >
       {({ errors }) => (
         <Form>
-          <Field
-            name="query"
-            type="text"
-            as={Input}
-            error={errors.query}
-            placeholder="Type to search..."
-          />
+          <FieldWrapper error={errors.query}>
+            <Field
+              name="query"
+              type="text"
+              as={Input}
+              placeholder="Type to search..."
+            />
+          </FieldWrapper>
           <Button
             disabled={!isEmpty(errors)}
             type="submit"

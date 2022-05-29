@@ -1,3 +1,4 @@
+import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useMutation } from "react-query";
@@ -26,23 +27,28 @@ const LoginPage = () => {
   );
 
   return (
-    <AuthLayout
-      isLoading={isLoading}
-      title={title}
-      hint={hint}
-      renderForm={() => (
-        <LoginForm onSubmit={(values: LoginFormValues) => signIn(values)} />
-      )}
-    >
-      <span className="block text-sm text-gray-400 mb-12 flex justify-between mt-12">
-        Dont have an account?
-        <span className="text-yellow-400">
-          <Link href={routes.signup()}>
-            <a>Sign Up</a>
-          </Link>
+    <>
+      <Head>
+        <title>Login</title>
+      </Head>
+      <AuthLayout
+        isLoading={isLoading}
+        title={title}
+        hint={hint}
+        renderForm={() => (
+          <LoginForm onSubmit={(values: LoginFormValues) => signIn(values)} />
+        )}
+      >
+        <span className="block text-sm text-gray-400 mb-12 flex justify-between mt-12">
+          Dont have an account?
+          <span className="text-yellow-400">
+            <Link href={routes.signup()}>
+              <a>Sign Up</a>
+            </Link>
+          </span>
         </span>
-      </span>
-    </AuthLayout>
+      </AuthLayout>
+    </>
   );
 };
 

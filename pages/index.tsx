@@ -1,4 +1,5 @@
 import type { NextPage } from "next";
+import Head from "next/head";
 import { useMutation, useQuery } from "react-query";
 import { getPosts, savePost } from "../api/posts/posts.api";
 import CategoriesList from "../components/CategoriesList";
@@ -28,32 +29,37 @@ const Home: NextPage = (props: any) => {
   );
 
   return (
-    <Layout displayPostNavigation={false}>
-      <div className="mb-6 lg:max-w-7xl mx-auto">
-        {isCategoriesLoading ? (
-          <Spinner />
-        ) : (
-          <CategoriesList categories={categories} />
-        )}
-      </div>
-      <div className="lg:grid lg:grid-cols-2 lg:gap-4 lg:max-w-7xl mx-auto">
-        <div>
-          {isPostsLoading ? (
+    <>
+      <Head>
+        <title>Feather: search through posts</title>
+      </Head>
+      <Layout displayPostNavigation={false}>
+        <div className="mb-6 lg:max-w-7xl mx-auto">
+          {isCategoriesLoading ? (
             <Spinner />
           ) : (
-            <PostsList
-              onSave={(id) =>
-                handleSavePost({
-                  post: id,
-                  user: user?.id,
-                })
-              }
-              posts={posts}
-            />
+            <CategoriesList categories={categories} />
           )}
         </div>
-      </div>
-    </Layout>
+        <div className="lg:grid lg:grid-cols-2 lg:gap-4 lg:max-w-7xl mx-auto">
+          <div>
+            {isPostsLoading ? (
+              <Spinner />
+            ) : (
+              <PostsList
+                onSave={(id) =>
+                  handleSavePost({
+                    post: id,
+                    user: user?.id,
+                  })
+                }
+                posts={posts}
+              />
+            )}
+          </div>
+        </div>
+      </Layout>
+    </>
   );
 };
 

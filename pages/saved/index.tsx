@@ -1,3 +1,4 @@
+import Head from "next/head";
 import { Bookmark } from "react-feather";
 import { useQuery } from "react-query";
 import { getSavedPosts } from "../../api/posts/posts.api";
@@ -11,13 +12,18 @@ const SavedPage = () => {
   const { data: savedPosts } = useQuery("queryKey", () => getSavedPosts(user));
 
   return (
-    <Layout>
-      <div className="flex items-center gap-3 mb-12">
-        <Bookmark />
-        <h2 className="font-bold">Your saved posts</h2>
-      </div>
-      <PostsList posts={savedPosts} />
-    </Layout>
+    <>
+      <Head>
+        <title>Saved posts</title>
+      </Head>
+      <Layout>
+        <div className="flex items-center gap-3 mb-12">
+          <Bookmark />
+          <h2 className="font-bold">Your saved posts</h2>
+        </div>
+        <PostsList posts={savedPosts} />
+      </Layout>
+    </>
   );
 };
 
