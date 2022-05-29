@@ -2,7 +2,6 @@ import Link from "next/link";
 import { routes } from "../../config/routes.config";
 import { Category } from "../../types/Category.type";
 import CategoryBadge from "../CategoryBadge";
-import "./CategoriesList.module.css";
 
 type CategoriesListProps = {
   categories?: Category[] | null;
