@@ -21,7 +21,7 @@ const LoginPage = () => {
         router.push(routes.root());
         toast.success("Successfuly logged in");
       },
-      onError: (error: any) => toast.error(`${error}`),
+      onError: (error: any) => toast.error(`${error}`) as any,
     }
   );
 

@@ -8,5 +8,5 @@ export const routes = {
   },
   category: (id: number) => `/category/${id}`,
   search: () => "/search",
-  saved: () => "saved",
+  saved: () => "/saved",
 };

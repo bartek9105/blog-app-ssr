@@ -1,4 +1,5 @@
 import { PropsWithChildren } from "react";
+import Layout from "../Layout";
 import Spinner from "../Spinner";
 
 type AuthLayoutProps = PropsWithChildren<{
@@ -16,7 +17,7 @@ const AuthLayout = ({
   isLoading,
 }: AuthLayoutProps) => {
   return (
-    <div className="text-white px-4 py-6">
+    <Layout displayPostNavigation={false}>
       <h3 className="tracking-wider text-3xl mb-4 font-bold">{title}</h3>
       <span className="block text-sm text-gray-400 mb-12">{hint}</span>
       {isLoading ? (
@@ -27,7 +28,7 @@ const AuthLayout = ({
           {children}
         </>
       )}
-    </div>
+    </Layout>
   );
 };
 

@@ -28,7 +28,7 @@ const PostNavigation = ({ onGoBack }: PostNavigationProps) => {
         <MoreHorizontal size={16} className="text-gray-400" />
         <span className="text-gray-400 text-xs">Categories</span>
       </div>
-      {isCategoriesModalOpen ? (
+      {isCategoriesModalOpen && categories ? (
         <CategoriesModal
           categories={categories}
           onClose={() => setIsCategoriesModalOpen(false)}

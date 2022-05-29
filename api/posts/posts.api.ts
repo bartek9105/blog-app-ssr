@@ -5,22 +5,16 @@ export const getPosts = async () => {
   const { data: posts, error } = await supabase
     .from("posts")
     .select(
-      "id, title, created_at, img_url, upvotes_count, categories ( id, name, img_url ), comments (*)"
+      "id, title, created_at, img_url, categories ( id, name, img_url ), comments (*)"
     );
   return posts;
-};
-
-export const upVotePost = async (postId: number) => {
-  const { data, error } = await supabase.rpc("increment_upvotes_count", {
-    row_id: postId,
-  });
 };
 
 export const getPost = async (postId: number) => {
   const { data: post, error } = await supabase
     .from<Post>("posts")
     .select(
-      "id, title, content, created_at, img_url, upvotes_count, categories ( id, name, img_url ), comments (*, user (*))"
+      "id, title, content, created_at, img_url, categories ( id, name, img_url ), comments (*, user (*))"
     )
     .eq("id", postId);
   return post?.[0];
@@ -30,7 +24,7 @@ export const getPostsByCategory = async (categoryId: number | undefined) => {
   const { data: posts, error } = await supabase
     .from("posts")
     .select(
-      "id, title, content, created_at, img_url, upvotes_count, categories ( id, name, img_url ), comments (*)"
+      "id, title, content, created_at, img_url, categories ( id, name, img_url ), comments (*)"
     )
     .eq("category", categoryId);
 
@@ -53,7 +47,29 @@ export const searchPosts = async ({ query }: SearchPostsConfig) => {
   return data;
 };
 
-export const getSavedPosts = async () => {
-  const { data, error } = await supabase.from("saved").select("*");
+export const getSavedPosts = async ({ id }: any) => {
+  const { data, error } = await supabase
+    .from("saved")
+    .select("post(*, categories (*), comments (*))")
+    .eq("user", id);
+  const transformedData = data?.map(({ post }) => {
+    return {
+      ...post,
+    };
+  });
+
+  return transformedData;
+};
+
+type SavePostConfig = {
+  post: number;
+  user: number;
+};
+
+export const savePost = async ({ post, user }: SavePostConfig) => {
+  const { data, error } = await supabase
+    .from("saved")
+    .insert([{ post }, { user }]);
+
   return data;
 };

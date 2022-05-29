@@ -6,6 +6,7 @@ import PostsList from "../../components/PostsList";
 import Image from "next/image";
 import Spinner from "../../components/Spinner";
 import { useGetCategories } from "../../hooks/useGetCategories";
+import Layout from "../../components/Layout";
 
 const CategoryPage = () => {
   const {
@@ -26,8 +27,7 @@ const CategoryPage = () => {
   );
 
   return (
-    <>
-      <PostNavigation />
+    <Layout>
       <div className="relative w-1/1 h-24 flex items-center justify-center">
         {currentCategory && !isCategoriesLoading ? (
           <>
@@ -46,7 +46,7 @@ const CategoryPage = () => {
           <Spinner />
         )}
       </div>
-      <div className="px-4 pb-4 lg:grid lg:grid-cols-2 lg:gap-4 lg:max-w-7xl mx-auto">
+      <div className="pb-4 lg:grid lg:grid-cols-2 lg:gap-4 lg:max-w-7xl mx-auto">
         {isPostsLoading ? (
           <Spinner />
         ) : (
@@ -55,7 +55,7 @@ const CategoryPage = () => {
           </div>
         )}
       </div>
-    </>
+    </Layout>
   );
 };
 

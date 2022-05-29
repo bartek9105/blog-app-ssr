@@ -1,15 +1,18 @@
 import type { NextPage } from "next";
-import { useState } from "react";
-import { useQuery } from "react-query";
-import { getPosts, upVotePost } from "../api/posts/posts.api";
+import { useMutation, useQuery } from "react-query";
+import { getPosts, savePost } from "../api/posts/posts.api";
 import CategoriesList from "../components/CategoriesList";
+import Layout from "../components/Layout";
 import PostsList from "../components/PostsList";
 import Spinner from "../components/Spinner";
+import supabase from "../config/supabase.config";
 import { useGetCategories } from "../hooks/useGetCategories";
 
 const postsQueryKey = "postsQueryKey";
 
 const Home: NextPage = (props: any) => {
+  const user = supabase.auth.user();
+
   const { categories, isCategoriesLoading } = useGetCategories();
   const { data: posts, isLoading: isPostsLoading } = useQuery(
     postsQueryKey,
@@ -18,17 +21,14 @@ const Home: NextPage = (props: any) => {
       initialData: props.posts,
     }
   );
-  const [upvotesCount, setUpvotesCount] = useState(posts.upvotes_count);
 
-  const handleUpvotesCountIncrement = (postId: number | undefined) => {
-    if (postId) {
-      setUpvotesCount((upvotesCount: number) => upvotesCount + 1);
-      upVotePost(postId);
-    }
-  };
+  const { mutateAsync: handleSavePost } = useMutation(
+    "somequery",
+    (data: any) => savePost(data)
+  );
 
   return (
-    <div className="px-4 py-6">
+    <Layout displayPostNavigation={false}>
       <div className="mb-6 lg:max-w-7xl mx-auto">
         {isCategoriesLoading ? (
           <Spinner />
@@ -42,14 +42,18 @@ const Home: NextPage = (props: any) => {
             <Spinner />
           ) : (
             <PostsList
+              onSave={(id) =>
+                handleSavePost({
+                  post: id,
+                  user: user?.id,
+                })
+              }
               posts={posts}
-              upvotesCount={upvotesCount}
-              onUpVote={handleUpvotesCountIncrement}
             />
           )}
         </div>
       </div>
-    </div>
+    </Layout>
   );
 };
 

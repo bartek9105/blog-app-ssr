@@ -3,7 +3,7 @@ import supabase from "../../config/supabase.config";
 type CommentConfig = {
   post_id: number;
   content: string;
-  user: number;
+  user: string;
 };
 
 export const addComment = async (data: CommentConfig) => {

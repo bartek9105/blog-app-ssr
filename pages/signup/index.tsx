@@ -21,7 +21,7 @@ const SignUpPage = () => {
         toast.success("Successfuly signed up");
         router.push(routes.login());
       },
-      onError: (error: any) => toast.error(`${error}`),
+      onError: (error: any) => toast.error(`${error}`) as any,
     }
   );
 

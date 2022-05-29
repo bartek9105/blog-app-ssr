@@ -2,7 +2,7 @@ import Image from "next/image";
 import { Category } from "../../types/Category.type";
 import { capitalize } from "lodash";
 
-type CategoryBadgeProps = Category;
+type CategoryBadgeProps = Omit<Category, "id">;
 
 const CategoryBadge = ({ name, img_url }: CategoryBadgeProps) => {
   const badgeName = capitalize(name);

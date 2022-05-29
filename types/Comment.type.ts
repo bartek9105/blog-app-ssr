@@ -3,4 +3,5 @@ export type Comment = {
   user_id: string;
   created_at: string;
   id: number;
+  user: any;
 };

@@ -2,13 +2,20 @@ import dynamic from "next/dynamic";
 import "react-quill/dist/quill.snow.css";
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 import "./TextEditor.module.css";
+import cn from "classnames";
 
 type TextEditorProps = {
   value: string;
   onChange: (value: string) => void;
+  className?: string;
 };
 
-const TextEditor = ({ value, onChange, ...restProps }: TextEditorProps) => {
+const TextEditor = ({
+  value,
+  onChange,
+  className,
+  ...restProps
+}: TextEditorProps) => {
   const modules = {
     toolbar: [
       [{ header: [1, 2, false] }],
@@ -30,7 +37,7 @@ const TextEditor = ({ value, onChange, ...restProps }: TextEditorProps) => {
       onChange={onChange}
       modules={modules}
       {...restProps}
-      className="bg-white"
+      className={cn("bg-white text-black", className)}
     />
   );
 };

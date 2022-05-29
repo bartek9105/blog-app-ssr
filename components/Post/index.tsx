@@ -2,15 +2,15 @@ import type { Post } from "../../types/Post.type";
 import Image from "next/image";
 import { capitalize } from "lodash";
 import { formatDistanceToNow } from "date-fns";
-import UpVoteButton from "../UpVoteButton";
 import { MessageCircle, Bookmark } from "react-feather";
 import CategoryHint from "../CategoryHint";
 import Link from "next/link";
 import { routes } from "../../config/routes.config";
 
-type PostProps = Post & {
-  onUpVote?: (postId: number) => void;
+type PostProps = Omit<Post, "content"> & {
   href: string;
+  onSave: () => void;
+  commentsCount?: number;
 };
 
 const PostA = ({
@@ -20,8 +20,8 @@ const PostA = ({
   img_url,
   created_at,
   categories,
-  comments_count,
-  onUpVote,
+  commentsCount,
+  onSave,
 }: PostProps) => {
   const categoryName = capitalize(categories.name);
 
@@ -58,15 +58,12 @@ const PostA = ({
           </a>
         </Link>
         <div className="flex items-center justify-between">
-          <div onClick={() => onUpVote?.(id)}>
-            <UpVoteButton upVotesCount={16} />
-          </div>
           <div className="flex items-center text-gray-300 text-sm">
             <div className="flex">
               <MessageCircle size={20} className="mr-2" />
-              {comments_count}
+              {commentsCount}
             </div>
-            <Bookmark size={20} className="ml-6" />
+            <Bookmark size={20} className="ml-6" onClick={onSave} />
           </div>
         </div>
       </div>
