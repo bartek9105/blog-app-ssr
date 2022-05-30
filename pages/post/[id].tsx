@@ -29,6 +29,10 @@ const PostDetailsPage = () => {
     <>
       <Head>
         <title>{post?.title}</title>
+        <meta
+          name="description"
+          content={`Read ${post?.title} contents, add comments and see what others think about it!`}
+        />
       </Head>
       <Layout>
         {post ? (

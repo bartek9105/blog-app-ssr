@@ -33,7 +33,7 @@ const PostA = ({
     <article className="bg-zinc-800 rounded">
       <div className="p-3 flex justify-between items-center">
         <Link href={routes.category(categories.id)} passHref>
-          <a>
+          <a aria-label="Category">
             <CategoryHint
               imgUrl={categories.img_url}
               categoryName={categories.name}
@@ -43,7 +43,7 @@ const PostA = ({
         <span className="text-gray-400 text-xs">{createdAt}</span>
       </div>
       <Link href={href} passHref>
-        <a>
+        <a aria-label="Post details">
           <div className="relative w-1/1 h-48">
             <Image layout="fill" objectFit="cover" src={img_url} alt={title} />
           </div>
@@ -51,7 +51,7 @@ const PostA = ({
       </Link>
       <div className="p-4">
         <Link href={href} passHref>
-          <a>
+          <a aria-label="Post details">
             <h2 className="text-white text-sm mt-3 leading-6 mb-4 font-bold">
               {title}
             </h2>

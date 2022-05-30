@@ -15,6 +15,10 @@ const SavedPage = () => {
     <>
       <Head>
         <title>Saved posts</title>
+        <meta
+          name="description"
+          content="All your favourite blog posts saved in one place"
+        />
       </Head>
       <Layout>
         <div className="flex items-center gap-3 mb-12">

@@ -26,14 +26,14 @@ const Navbar = () => {
       <Logo onClick={() => router.push(routes.root())} />
       <div className="flex items-center gap-4">
         <Link href={routes.search()} passHref>
-          <a>
+          <a aria-label="Search posts">
             <Search />
           </a>
         </Link>
         {user ? (
           <div className="flex items-center gap-4">
             <Link href={routes.saved()} passHref>
-              <a>
+              <a aria-label="Save post">
                 <Bookmark />
               </a>
             </Link>
@@ -49,7 +49,7 @@ const Navbar = () => {
               ) : null}
             </span>
             <Link href={routes.post.new()} passHref>
-              <a>
+              <a aria-label="Create new post">
                 <Button variant="primary">
                   <Edit size={16} />
                 </Button>
@@ -58,7 +58,7 @@ const Navbar = () => {
           </div>
         ) : (
           <Link href={routes.login()} passHref>
-            <a>
+            <a aria-label="Login">
               <Button variant="primary">
                 <LogIn />
                 Login

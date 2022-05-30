@@ -8,14 +8,17 @@ const mobileNavItems = [
   {
     renderIcon: () => <Home />,
     href: routes.root(),
+    ariaLabel: "Home",
   },
   {
     renderIcon: () => <Search />,
     href: routes.search(),
+    ariaLabel: "Search posts",
   },
   {
     renderIcon: () => <Bookmark />,
     href: routes.saved(),
+    ariaLabel: "Save post",
   },
 ];
 
@@ -34,10 +37,13 @@ const MobileNavbar = ({ className }: MobileNavbarProps) => {
       )}
     >
       <ul className="flex items-center justify-between">
-        {mobileNavItems.map(({ renderIcon, href }, index) => (
+        {mobileNavItems.map(({ ariaLabel, renderIcon, href }, index) => (
           <Link href={href} key={index} passHref>
             <li className="cursor-pointer">
-              <a className={pathname === href ? "text-white" : ""}>
+              <a
+                className={pathname === href ? "text-white" : ""}
+                aria-label={ariaLabel}
+              >
                 {renderIcon()}
               </a>
             </li>

@@ -30,6 +30,10 @@ const CategoryPage = () => {
     <>
       <Head>
         <title>{currentCategory?.name}</title>
+        <meta
+          name="description"
+          content={`Posts for ${currentCategory?.name} category`}
+        />
       </Head>
       <Layout className="lg:max-w-5xl mx-auto">
         <div className="relative w-1/1 h-24 flex items-center justify-center">

@@ -18,7 +18,7 @@ const CategoriesList = ({ categories }: CategoriesListProps) => {
         {categories?.map(({ id, name, img_url }) => (
           <li className="mr-4 last-of-type:mr-0" key={id}>
             <Link href={routes.category(id)} passHref>
-              <a>
+              <a aria-label="Category">
                 <CategoryBadge name={name} img_url={img_url} />
               </a>
             </Link>

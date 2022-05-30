@@ -30,6 +30,10 @@ const SignUpPage = () => {
     <>
       <Head>
         <title>Signup</title>
+        <meta
+          name="description"
+          content="Signup to create your account in Feather blog to be able to create new posts as well as save your favourite ones and add comments to spark a discussion"
+        />
       </Head>
       <AuthLayout
         isLoading={isLoading}
@@ -43,7 +47,7 @@ const SignUpPage = () => {
           Already have an account?
           <span className="text-yellow-400">
             <Link href={routes.login()}>
-              <a>Login</a>
+              <a aria-label="Login">Login</a>
             </Link>
           </span>
         </span>

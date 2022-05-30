@@ -21,7 +21,7 @@ const CategoriesModal = ({ categories, onClose }: CategoriesModalProps) => {
           {categories?.map(({ id, name, img_url }) => (
             <li key={id} onClick={onClose}>
               <Link href={routes.category(id)} passHref>
-                <a>
+                <a aria-label="Category">
                   <CategoryBadge name={name} img_url={img_url} />
                 </a>
               </Link>

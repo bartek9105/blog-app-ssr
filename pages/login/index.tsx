@@ -30,6 +30,10 @@ const LoginPage = () => {
     <>
       <Head>
         <title>Login</title>
+        <meta
+          name="description"
+          content="Login to Feather blog to create new posts, save your favourite posts and start a new discussion"
+        />
       </Head>
       <AuthLayout
         isLoading={isLoading}
@@ -43,7 +47,7 @@ const LoginPage = () => {
           Dont have an account?
           <span className="text-yellow-400">
             <Link href={routes.signup()}>
-              <a>Sign Up</a>
+              <a aria-label="Login">Sign Up</a>
             </Link>
           </span>
         </span>

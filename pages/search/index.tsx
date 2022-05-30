@@ -28,6 +28,10 @@ const Search = () => {
     <>
       <Head>
         <title>Search posts</title>
+        <meta
+          name="description"
+          content="Search through all blog posts and find something that interests you."
+        />
       </Head>
       <Layout className="lg:max-w-4xl mx-auto">
         <SearchPostsForm
@@ -53,7 +57,7 @@ const Search = () => {
                     passHref
                   >
                     <li key={post.id}>
-                      <a>
+                      <a aria-label="Login">
                         <PostSearchResult post={post} />
                       </a>
                     </li>
