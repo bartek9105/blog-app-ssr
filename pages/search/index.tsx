@@ -52,11 +52,11 @@ const Search = () => {
                     key={post.id}
                     passHref
                   >
-                    <a>
-                      <li key={post.id}>
+                    <li key={post.id}>
+                      <a>
                         <PostSearchResult post={post} />
-                      </li>
-                    </a>
+                      </a>
+                    </li>
                   </Link>
                 ))}
               </ul>
