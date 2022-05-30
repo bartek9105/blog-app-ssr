@@ -1,20 +1,27 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import { useMutation, useQuery } from "react-query";
+import { getCategories } from "../api/categories/categories.api";
 import { getPosts, savePost } from "../api/posts/posts.api";
 import CategoriesList from "../components/CategoriesList";
 import Layout from "../components/Layout";
 import PostsList from "../components/PostsList";
 import Spinner from "../components/Spinner";
 import supabase from "../config/supabase.config";
-import { useGetCategories } from "../hooks/useGetCategories";
 
 const postsQueryKey = "postsQueryKey";
+const categoriesQueryKey = "categoriesQueryKey";
 
 const Home: NextPage = (props: any) => {
   const user = supabase.auth.user();
 
-  const { categories, isCategoriesLoading } = useGetCategories();
+  const { data: categories, isLoading: isCategoriesLoading } = useQuery(
+    categoriesQueryKey,
+    getCategories,
+    {
+      initialData: props.categories,
+    }
+  );
   const { data: posts, isLoading: isPostsLoading } = useQuery(
     postsQueryKey,
     getPosts,
@@ -65,9 +72,11 @@ const Home: NextPage = (props: any) => {
 
 export async function getStaticProps() {
   const posts = await getPosts();
+  const categories = await getCategories();
   return {
     props: {
       posts,
+      categories,
     },
   };
 }
