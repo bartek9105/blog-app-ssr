@@ -13,10 +13,9 @@ const CategoryBadge = ({ name, img_url }: CategoryBadgeProps) => {
         <Image
           src={img_url}
           alt={name}
-          layout="responsive"
-          width={128}
-          height={48}
           className="rounded"
+          objectFit="cover"
+          layout="fill"
         />
       </div>
       <span className="font-bold z-10 px-2 py-1 rounded-lg">{badgeName}</span>

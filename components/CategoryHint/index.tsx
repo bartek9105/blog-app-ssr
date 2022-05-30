@@ -11,13 +11,15 @@ const CategoryHint = ({ imgUrl, categoryName }: CategoryHintProps) => {
 
   return (
     <div className="flex items-center">
-      <Image
-        src={imgUrl}
-        alt={categoryName}
-        width={24}
-        height={24}
-        className="rounded"
-      />
+      <div className="w-8 h-8 relative">
+        <Image
+          src={imgUrl}
+          alt={categoryName}
+          objectFit="cover"
+          layout="fill"
+          className="rounded"
+        />
+      </div>
       <span className="flex text-white text-xs font-bold ml-3">
         {categoryNameFormat}
       </span>
