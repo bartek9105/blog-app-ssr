@@ -36,7 +36,7 @@ const CategoryPage = () => {
         />
       </Head>
       <Layout className="lg:max-w-5xl mx-auto">
-        <div className="relative w-1/1 h-24 flex items-center justify-center">
+        <div className="relative w-1/1 h-16 md:h-32 flex items-center justify-center">
           {currentCategory && !isCategoriesLoading ? (
             <>
               <Image

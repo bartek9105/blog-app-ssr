@@ -44,9 +44,8 @@ const PostA = ({
       </div>
       <Link href={href} passHref>
         <a aria-label="Post details">
-          <div className="relative w-1/1 h-48">
+          <div className="relative w-1/1 h-96">
             <Image
-              loading="lazy"
               layout="fill"
               objectFit="cover"
               src={img_url}
