@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
-import { useMutation, useQuery } from "react-query";
+import { dehydrate, QueryClient, useMutation, useQuery } from "react-query";
 import {
   getCategories,
   getPopularCategories,
@@ -22,15 +22,11 @@ const categoriesQueryKey = "categoriesQueryKey";
 const Home: NextPage = (props: any) => {
   const user = supabase.auth.user();
 
-  const { data: categories } = useQuery(categoriesQueryKey, getCategories, {
-    initialData: props.categories,
-  });
-  const { data: posts } = useQuery(postsQueryKey, getPosts, {
-    initialData: props.posts,
-  });
+  const { data: categories } = useQuery(categoriesQueryKey, getCategories);
+  const { data: posts } = useQuery(postsQueryKey, getPosts);
 
   const popularPosts = posts
-    .filter((post: Post) => post?.comments?.length)
+    ?.filter((post: Post) => post?.comments?.length)
     .sort((a: any, b: any) => b.comments.length - a.comments.length)
     .splice(0, 6);
 
@@ -55,15 +51,17 @@ const Home: NextPage = (props: any) => {
         </div>
         <div className="md:flex md:gap-16 lg:max-w-7xl mx-auto">
           <div className="w-1/1 md:w-3/5">
-            <PostsList
-              onSave={(id) =>
-                handleSavePost({
-                  post: id,
-                  user: user?.id,
-                })
-              }
-              posts={posts}
-            />
+            {posts && (
+              <PostsList
+                onSave={(id) =>
+                  handleSavePost({
+                    post: id,
+                    user: user?.id,
+                  })
+                }
+                posts={posts}
+              />
+            )}
           </div>
           <div className="text-white hidden sm:hidden md:block">
             <div className="mb-8">
@@ -104,12 +102,12 @@ const Home: NextPage = (props: any) => {
 };
 
 export async function getStaticProps() {
-  const posts = await getPosts();
-  const categories = await getCategories();
+  const queryClient = new QueryClient();
+  await queryClient.prefetchQuery("posts", getPosts);
+  await queryClient.prefetchQuery("categories", getCategories);
   return {
     props: {
-      posts,
-      categories,
+      dehydratedState: dehydrate(queryClient),
     },
   };
 }
