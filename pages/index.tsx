@@ -101,7 +101,7 @@ const Home: NextPage = (props: any) => {
   );
 };
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const queryClient = new QueryClient();
   await queryClient.prefetchQuery("posts", getPosts);
   await queryClient.prefetchQuery("categories", getCategories);
