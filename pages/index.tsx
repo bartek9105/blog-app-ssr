@@ -22,8 +22,8 @@ const categoriesQueryKey = "categoriesQueryKey";
 const Home: NextPage = (props: any) => {
   const user = supabase.auth.user();
 
-  const { data: categories } = useQuery(categoriesQueryKey, getCategories);
-  const { data: posts } = useQuery(postsQueryKey, getPosts);
+  const { data: categories } = useQuery("categories", getCategories);
+  const { data: posts } = useQuery("posts", getPosts);
 
   const popularPosts = posts
     ?.filter((post: Post) => post?.comments?.length)
